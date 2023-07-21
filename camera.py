@@ -9,13 +9,12 @@ from time import time
 
 class FireDetection:
     """
-    Class implements Yolo5 model to make inferences on a youtube video using Opencv2.
+    Class implements Yolo5 model to make inferences on a webcam video using Opencv2.
     """
 
     def __init__(self, capture_index, model_name):
         """
-        Initializes the class with youtube url and output file.
-        :param url: Has to be as youtube URL,on which prediction is made.
+        Initializes the class with a webcam input and output file.
         :param out_file: A valid output file name.
         """
         self.capture_index = capture_index
@@ -28,6 +27,7 @@ class FireDetection:
     def get_video_capture(self):
         return cv2.VideoCapture(self.capture_index)
 
+    # Load the special trained model
     def load_model(self, model_name):
         if model_name:
             model = torch.hub.load('ultralytics/yolov5', 'custom', path=model_name, force_reload=True)
